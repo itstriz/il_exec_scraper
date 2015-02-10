@@ -15,7 +15,13 @@ def asp_to_md(url):
     title_pos = soup.find_all('b')[1]
     title = title_pos.text
     summary = title_pos.findNext('div').text
-    print summary
+
+    all_divs = soup.find_all('div')
+    
+    p = re.compile('^(WHEREAS|THEREFORE|[IVXLCDM]*\.).*$')
+    for div in all_divs:
+        if p.match(div.text):
+            print div.text
 
 BASE_URL = 'http://www.illinois.gov/Government/ExecOrders/Pages/default.aspx'
 
