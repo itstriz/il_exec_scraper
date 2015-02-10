@@ -12,8 +12,10 @@ def asp_to_md(url):
     #f = open('test_file.txt', 'w')
     #f.write(html)
     #f.close()
-    title = soup.find_all('b')[1].text
-    print title
+    title_pos = soup.find_all('b')[1]
+    title = title_pos.text
+    summary = title_pos.findNext('div').text
+    print summary
 
 BASE_URL = 'http://www.illinois.gov/Government/ExecOrders/Pages/default.aspx'
 
