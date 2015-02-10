@@ -4,13 +4,16 @@ from urllib2 import urlopen
 import re
 
 def asp_to_md(url):
+    print 'scraping ' + url
     BASE_URL = 'http://www.illinois.gov'
     html = urlopen(BASE_URL + url).read()
     soup = BeautifulSoup(html)
 
-    f = open('test_file.txt', 'w')
-    f.write(html)
-    f.close()
+    #f = open('test_file.txt', 'w')
+    #f.write(html)
+    #f.close()
+    title = soup.find_all('b')[1].text
+    print title
 
 BASE_URL = 'http://www.illinois.gov/Government/ExecOrders/Pages/default.aspx'
 
@@ -32,4 +35,4 @@ for href in hrefs:
         pass
 f.close()
 
-asp_to_md(href[0])
+asp_to_md(hrefs[0])
